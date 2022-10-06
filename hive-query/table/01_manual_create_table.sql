@@ -19,7 +19,7 @@ CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name    -- (
 
 -- CREATE TABLE WITH parquet
 -- parquet 파일은 꼭 Schema의 datatype을 맞춰야 한다.
-CREATE TABLE if not exsits default.person(
+CREATE TABLE if not exists default.person(
     pid     INT,
     name    STRING,
     age     INT,

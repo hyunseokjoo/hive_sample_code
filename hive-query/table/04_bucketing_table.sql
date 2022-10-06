@@ -14,15 +14,14 @@
 -- This property is not needed if you are using Hive 2.x or later
 set hive.enforce.bucketing = true;
 
-CREATE EXTERNAL TABLE if not exists default.person(
+CREATE EXTERNAL TABLE if not exists test.person(
     pid     INT,
     name    STRING,
     age     INT,
     address STRING
 )
-CLUSTERED BY(PID) STORED BY name ASC into 256 BUCKETS 
-STORED AS ORC
-TBLPROPERTIES('transactional' = 'true');
+CLUSTERED BY (pid) SORTED BY (name ASC) into 256 BUCKETS 
+LOCATION 'hdfs://namenode:8020/temp/';
 
 -- tip
 -- pid 기준으로 bucketing하고, name 기준으로 내림차순, 256 bucket에 나눠서 데이터 담기
