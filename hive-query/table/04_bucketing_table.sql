@@ -14,13 +14,13 @@
 -- This property is not needed if you are using Hive 2.x or later
 set hive.enforce.bucketing = true;
 
-CREATE EXTERNAL if not exsits default.person(
+CREATE EXTERNAL TABLE if not exists default.person(
     pid     INT,
     name    STRING,
     age     INT,
     address STRING
 )
-CLUSTERD BY(PID) STORED BY name ASC into 256 BUCKETS 
+CLUSTERED BY(PID) STORED BY name ASC into 256 BUCKETS 
 STORED AS ORC
 TBLPROPERTIES('transactional' = 'true');
 
