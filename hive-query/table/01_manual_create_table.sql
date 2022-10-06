@@ -15,35 +15,26 @@ CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name    -- (
   [LOCATION hdfs_path]
   [TBLPROPERTIES (property_name=property_value, ...)]   -- (Note: Available in Hive 0.6.0 and later)
   [AS select_statement];   -- (Note: Available in Hive 0.5.0 and later; not supported for external tables)
- 
 
--- create managed or internal table 예제
-CREATE TABLE default.person(
+
+
+
+
+
+
+
+-- CREATE TABLE WITH parquet
+-- parquet 파일은 꼭 Schema의 datatype을 맞춰야 한다.
+CREATE TABLE if not exsits default.person(
     pid     INT,
     name    STRING,
     age     INT,
     address STRING
 )
-STORED AS ORC
+PARTITIONED BY (year int, month int, day int)
+STORED AS PARQUET;
 
 
--- CREATE TABLE WITH LOCATION-HDFS
-CREATE TABLE default.person(
-    pid     INT,
-    name    STRING,
-    age     INT,
-    address STRING
-)
-STORED AS ORC
-LOCATION 'hdfs://{bucket_name}/{path}';
 
 
--- CREATE TABLE WITH LOCATION-AWS S3
-CREATE TABLE default.person(
-    pid     INT,
-    name    STRING,
-    age     INT,
-    address STRING
-)
-STORED AS ORC
-LOCATION 's3a://{bucket_name}/{path}';
+

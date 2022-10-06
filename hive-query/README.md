@@ -1,0 +1,2 @@
+# Hive Query Sample Code
+
