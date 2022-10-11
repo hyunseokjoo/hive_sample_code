@@ -7,7 +7,7 @@
 -- 보통 에러 없이 처리 하고 싶을 때 이 옵션을 사용하게 된다.
 
 -- CREATE TABLE WITH [if not exists] option
-CREATE TABLE if not exsits default.person(
+CREATE TABLE if not exists default.person(
     pid     INT,
     name    STRING,
     age     INT,
