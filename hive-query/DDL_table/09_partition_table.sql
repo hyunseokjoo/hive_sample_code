@@ -5,7 +5,7 @@
 -- 그 중 하나가 partitions이다. bucket은 column기준으로 캐싱하여 논리적 처리를 하지만
 -- partition은 폴더를 나눠서 보관하여 물리적 처리를 한다.
 
-CREATE TABLE if not exsits default.person(
+CREATE TABLE if not exists default.person(
     pid     INT,
     name    STRING,
     age     INT,
