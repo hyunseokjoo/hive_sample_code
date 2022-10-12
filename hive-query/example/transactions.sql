@@ -5,10 +5,14 @@ CREATE TABLE if not exists default.person(
         age     INT,
         address STRING
 )
-CLUSTERED BY (pid) into 24 BUCKETS 
+CLUSTERED BY (pid) into 1 BUCKETS 
 STORED AS ORC
 LOCATION 'hdfs://namenode:8020/person/'
 TBLPROPERTIES('transactional'='true');
+
+-- non_acid오류가 난다면
+set hive.txn.manager=org.apache.hadoop.hive.ql.lockmgr.DbTxnManager;
+set hive.support.concurrency=true;
 
 
 -- transaction dummy data 생성 
@@ -29,6 +33,7 @@ insert into table default.person values
 (21, 'james', 22, 'Seoul'),(22, 'Tom', 47, 'New York'),(23, 'Jace', 56, 'San Francisco'),
 (24, 'Catalina', 36, 'Florida'),(25, 'Nilla', 26, 'Seoul'),(26, 'Hyun', 52, 'Seoul'),
 (27, 'Jack', 34, 'Tokyo'),(28, 'Sunny', 38, 'Fukuoka');
+
 
 -- 조회
 select * from person;
